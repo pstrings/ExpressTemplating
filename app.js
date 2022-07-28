@@ -1,16 +1,16 @@
 const path = require("path")
 
-
 const express = require("express")
 const bodyParser = require("body-parser")
+const expressHbs = require("express-handlebars")
 
 const adminData = require("./routes/admin")
 const shopRouter = require("./routes/shop")
 
 const app = express()
 
-// Setting pug as the templating engine
-app.set('view engine', 'pug') 
+app.engine('handlebars', expressHbs())
+app.set('view engine', 'handlebars') 
 
 app.use(bodyParser.urlencoded({extended: false})) 
 app.use(express.static(path.join(__dirname, "public")))
